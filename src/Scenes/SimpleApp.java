@@ -1,0 +1,106 @@
+package Scenes;
+
+import EventListeners.PageComponentAdapter;
+import EventListeners.GLEventListeners.SimpleGLEventListener;
+import com.jogamp.opengl.awt.GLCanvas;
+import com.jogamp.opengl.util.FPSAnimator;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import Graphics.Assets;
+
+public class SimpleApp implements Page {
+    private final JFrame frame;
+    private JButton exitButton;
+    private JLayeredPane layerPane;
+    private GLCanvas canvas;
+
+    public SimpleApp() {
+        frame = new JFrame("Start Menu");
+        layerPane = new JLayeredPane();
+        setupFrame();
+        addComponents();
+        addListeners();
+        setupAnimator();
+    }
+
+    private void setupFrame() {
+        frame.setSize(1600, 1000);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+        frame.setContentPane(layerPane);
+        layerPane.setLayout(null);
+    }
+
+    private void setupAnimator() {
+        canvas = new GLCanvas();
+        canvas.setSize(frame.getContentPane().getWidth(), frame.getContentPane().getHeight());
+        SimpleGLEventListener listener = new SimpleGLEventListener();
+        canvas.addGLEventListener(listener);
+        layerPane.add(canvas, 1);
+
+        frame.addComponentListener(new PageComponentAdapter(this));
+
+        layerPane.setOpaque(false);
+        frame.setBackground(Color.BLACK);
+
+        FPSAnimator animator = new FPSAnimator(canvas, 60);
+        animator.start();
+    }
+
+    @Override
+    public void addComponents() {
+        exitButton = new JButton("Exit");
+        int buttonWidth = frame.getContentPane().getWidth() / 4;
+        int buttonHeight = frame.getContentPane().getHeight() / 10;
+        Assets.frameAddButton(layerPane, exitButton, buttonWidth, buttonHeight, 0);
+    }
+
+    @Override
+    public void addListeners() {
+        frame.addComponentListener(new PageComponentAdapter(this));
+        exitButton.setActionCommand("exit");
+        exitButton.addActionListener(this::handleEvents);
+    }
+
+    @Override
+    public void handleEvents(ActionEvent e) {
+        String command = e.getActionCommand();
+        switch (command) {
+            case "exit":
+                dispose();
+                System.exit(0);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown command: " + command);
+        }
+    }
+
+    @Override
+    public void show() {
+        frame.setVisible(true);
+    }
+
+    @Override
+    public void hide() {
+        frame.setVisible(false);
+    }
+
+    @Override
+    public void dispose() {
+        frame.dispose();
+    }
+
+    @Override
+    public void renderPage() {
+        canvas.setSize(frame.getContentPane().getWidth(), frame.getContentPane().getHeight());
+        try {
+            exitButton.setSize(frame.getContentPane().getWidth() / 4,
+                    frame.getContentPane().getHeight() / 10);
+            Assets.frameCenterButton(frame, exitButton, 0, frame.getHeight() / 4);
+        } catch (NullPointerException ex) {
+            System.out.println("Null pointer exception, make sure you've called addComponents() first for the page");
+        }
+    }
+}
