@@ -1,8 +1,10 @@
 package Scenes;
 
+import EventListeners.GLEventListeners.RotatingTrianglesRenderer;
 import EventListeners.PageComponentAdapter;
 import EventListeners.GLEventListeners.SimpleGLEventListener;
 import Logic.PageManager;
+import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
 
@@ -42,7 +44,7 @@ public class SimpleApp implements Page {
     private void setupAnimator() {
         canvas = new GLCanvas();
         canvas.setSize(frame.getContentPane().getWidth(), frame.getContentPane().getHeight());
-        SimpleGLEventListener listener = new SimpleGLEventListener();
+        GLEventListener listener = new RotatingTrianglesRenderer();
         canvas.addGLEventListener(listener);
         layerPane.add(canvas, 1);
 
@@ -75,7 +77,7 @@ public class SimpleApp implements Page {
         String command = e.getActionCommand();
         switch (command) {
             case "exit":
-                dispose();
+                PageManager.disposePage(this);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown command: " + command);
