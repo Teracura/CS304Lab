@@ -2,6 +2,7 @@ package Scenes;
 
 import EventListeners.PageComponentAdapter;
 import EventListeners.GLEventListeners.SimpleGLEventListener;
+import Logic.PageManager;
 import com.jogamp.opengl.awt.GLCanvas;
 
 import javax.swing.*;
@@ -9,23 +10,30 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class MainDrawPage implements Page {
-    private final JFrame frame;
+    private JFrame frame;
     private JButton triangleButton;
     private JButton dotButton;
     private SimpleGLEventListener listener;
     private GLCanvas canvas;
 
     public MainDrawPage() {
+
+    }
+
+    @Override
+    public void init() {
         frame = new JFrame("Main Draw Page");
         setupFrame();
         addComponents();
         addListeners();
+        PageManager.registerFrameCloseHandler(this, frame);
     }
 
     private void setupFrame() {
         frame.setSize(1080, 700);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());}
+        frame.setLayout(new BorderLayout());
+    }
+
 
     @Override
     public void addComponents() {
@@ -59,16 +67,6 @@ public class MainDrawPage implements Page {
     }
 
     @Override
-    public void show() {
-        frame.setVisible(true);
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
     public void handleEvents(ActionEvent e) {
         var command = e.getActionCommand();
         switch (command) {
@@ -85,11 +83,21 @@ public class MainDrawPage implements Page {
 
     @Override
     public void dispose() {
-
+        frame.dispose();
     }
 
     @Override
     public void renderPage() {
 
+    }
+
+    @Override
+    public boolean isVisible() {
+        return frame.isVisible();
+    }
+
+    @Override
+    public void setVisible(boolean b) {
+        frame.setVisible(b);
     }
 }

@@ -2,6 +2,7 @@ package Scenes;
 
 import EventListeners.PageComponentAdapter;
 import EventListeners.GLEventListeners.SimpleGLEventListener;
+import Logic.PageManager;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
 
@@ -11,23 +12,28 @@ import java.awt.event.ActionEvent;
 import Graphics.Assets;
 
 public class SimpleApp implements Page {
-    private final JFrame frame;
+    private JFrame frame;
     private JButton exitButton;
     private JLayeredPane layerPane;
     private GLCanvas canvas;
 
     public SimpleApp() {
+
+    }
+
+    @Override
+    public void init() {
         frame = new JFrame("Start Menu");
         layerPane = new JLayeredPane();
         setupFrame();
         addComponents();
         addListeners();
         setupAnimator();
+        PageManager.registerFrameCloseHandler(this, frame);
     }
 
     private void setupFrame() {
         frame.setSize(1600, 1000);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.setContentPane(layerPane);
         layerPane.setLayout(null);
@@ -70,21 +76,10 @@ public class SimpleApp implements Page {
         switch (command) {
             case "exit":
                 dispose();
-                System.exit(0);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown command: " + command);
         }
-    }
-
-    @Override
-    public void show() {
-        frame.setVisible(true);
-    }
-
-    @Override
-    public void hide() {
-        frame.setVisible(false);
     }
 
     @Override
@@ -102,5 +97,15 @@ public class SimpleApp implements Page {
         } catch (NullPointerException ex) {
             System.out.println("Null pointer exception, make sure you've called addComponents() first for the page");
         }
+    }
+
+    @Override
+    public boolean isVisible() {
+        return frame.isVisible();
+    }
+
+    @Override
+    public void setVisible(boolean b) {
+        frame.setVisible(b);
     }
 }
