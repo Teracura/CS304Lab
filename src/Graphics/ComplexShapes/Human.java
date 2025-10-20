@@ -1,5 +1,9 @@
-package Graphics;
+package Graphics.ComplexShapes;
 
+import Graphics.BasicShapes.Circle;
+import Graphics.BasicShapes.Rectangle;
+import Graphics.Color;
+import Graphics.Coordinate;
 import com.jogamp.opengl.GL2;
 
 public class Human {
@@ -10,7 +14,7 @@ public class Human {
     Color skinColor;
 
     public Human(Coordinate center, double height, double width) {
-        this(center, height, width, Color.BLUE, new Color(1, 0.8, 0.6)); // default: blue body, skin tone head
+        this(center, height, width, Color.BLUE, new Color(1, 0.8, 0.6));
     }
 
     public Human(Coordinate center, double height, double width, Color bodyColor, Color skinColor) {
@@ -39,8 +43,8 @@ public class Human {
         double armOffsetX = width / 2;
         Rectangle rightArm = new Rectangle(new Coordinate(center.x() + armOffsetX, armY), limbLength, limbThickness);
         Rectangle leftArm = new Rectangle(new Coordinate(center.x() - armOffsetX, armY), limbLength, limbThickness);
-        rightArm.rotation = -30;
-        leftArm.rotation = 30;
+        rightArm.setRotation(-30);
+        leftArm.setRotation(30);
         rightArm.draw(gl, true, bodyColor);
         leftArm.draw(gl, true, bodyColor);
 
@@ -48,8 +52,8 @@ public class Human {
         double legOffsetX = width * 0.1;
         Rectangle rightLeg = new Rectangle(new Coordinate(center.x() + legOffsetX, legStartY - limbLength / 2), limbThickness, limbLength);
         Rectangle leftLeg = new Rectangle(new Coordinate(center.x() - legOffsetX, legStartY - limbLength / 2), limbThickness, limbLength);
-        rightLeg.rotation = 15;
-        leftLeg.rotation = -15;
+        rightLeg.setRotation(15);
+        leftLeg.setRotation(-15);
         rightLeg.draw(gl, true, bodyColor);
         leftLeg.draw(gl, true, bodyColor);
     }

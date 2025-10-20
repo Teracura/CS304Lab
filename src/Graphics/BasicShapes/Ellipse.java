@@ -1,5 +1,7 @@
-package Graphics;
+package Graphics.BasicShapes;
 
+import Graphics.Color;
+import Graphics.Coordinate;
 import com.jogamp.opengl.GL2;
 
 public class Ellipse {

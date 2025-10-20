@@ -1,5 +1,8 @@
-package Graphics;
+package Graphics.ComplexShapes;
 
+import Graphics.BasicShapes.Circle;
+import Graphics.Color;
+import Graphics.Coordinate;
 import com.jogamp.opengl.GL2;
 
 public class Sun {

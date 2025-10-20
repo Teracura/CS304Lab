@@ -1,5 +1,7 @@
-package Graphics;
+package Graphics.BasicShapes;
 
+import Graphics.Color;
+import Graphics.Coordinate;
 import com.jogamp.opengl.GL2;
 
 public class Rectangle {
@@ -55,6 +57,14 @@ public class Rectangle {
 
     public Coordinate getCenter() {
         return center;
+    }
+
+    public double getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(double rotation) {
+        this.rotation = rotation;
     }
 
     public double getWidth() {

@@ -1,7 +1,7 @@
-package Graphics;
+package Graphics.BasicShapes;
 
+import Graphics.Coordinate;
 import com.jogamp.opengl.GL2;
-import com.jogamp.opengl.GLAutoDrawable;
 
 public class Circle{
     Coordinate center;

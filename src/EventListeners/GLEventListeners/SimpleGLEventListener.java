@@ -1,7 +1,5 @@
 package EventListeners.GLEventListeners;
 
-import Graphics.Circle;
-import Graphics.Coordinate;
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLEventListener;

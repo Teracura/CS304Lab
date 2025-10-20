@@ -1,11 +1,12 @@
 package EventListeners.GLEventListeners;
 
 import Graphics.*;
+import Graphics.BasicShapes.Circle;
+import Graphics.BasicShapes.Rectangle;
+import Graphics.ComplexShapes.*;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
-
-import java.nio.file.DirectoryNotEmptyException;
 
 public class TownDrawingRenderer implements GLEventListener {
     GL2 gl;

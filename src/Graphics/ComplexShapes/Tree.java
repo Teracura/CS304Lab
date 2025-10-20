@@ -1,5 +1,10 @@
-package Graphics;
+package Graphics.ComplexShapes;
 
+import Graphics.BasicShapes.Circle;
+import Graphics.BasicShapes.Rectangle;
+import Graphics.BasicShapes.Triangle;
+import Graphics.Color;
+import Graphics.Coordinate;
 import com.jogamp.opengl.GL2;
 
 public class Tree {
