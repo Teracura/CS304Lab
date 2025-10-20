@@ -1,15 +1,15 @@
 package Graphics;
 
-public record Coordinate(float x, float y) {
+public record Coordinate(double x, double y) {
 
     public Coordinate copy() {
         return new Coordinate(x, y);
     }
 
-    public float distanceTo(Coordinate other) {
-        float dx = other.x - x;
-        float dy = other.y - y;
-        return (float) Math.sqrt(dx * dx + dy * dy);
+    public double distanceTo(Coordinate other) {
+        double dx = other.x - x;
+        double dy = other.y - y;
+        return Math.sqrt(dx * dx + dy * dy);
     }
 
     @Override

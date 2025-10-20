@@ -29,7 +29,8 @@ public class MainDrawPage implements Page {
         PageManager.registerFrameCloseHandler(this, frame);
     }
 
-    private void setupFrame() {
+    @Override
+    public void setupFrame() {
         frame.setSize(1080, 700);
         frame.setLayout(new BorderLayout());
     }
@@ -50,7 +51,7 @@ public class MainDrawPage implements Page {
         layerPane.setLayout(new BorderLayout());
 
         layerPane.setOpaque(false);
-        frame.setBackground(Color.BLACK);
+        frame.setBackground(Color.CYAN);
 
         layerPane.add(canvas, BorderLayout.CENTER, 1);
         layerPane.add(triangleButton, BorderLayout.NORTH, 0);

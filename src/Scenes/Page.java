@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 public interface Page {
     void init();
+    void setupFrame();
     void addComponents();
 
     void addListeners();

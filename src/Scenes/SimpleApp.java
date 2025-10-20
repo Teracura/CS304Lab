@@ -33,8 +33,8 @@ public class SimpleApp implements Page {
         setupAnimator();
         PageManager.registerFrameCloseHandler(this, frame);
     }
-
-    private void setupFrame() {
+    @Override
+    public void setupFrame() {
         frame.setSize(1600, 1000);
         frame.setLayout(new BorderLayout());
         frame.setContentPane(layerPane);

@@ -5,14 +5,14 @@ import com.jogamp.opengl.GLAutoDrawable;
 
 public class Circle{
     Coordinate center;
-    int radius;
+    double radius;
 
-    public Circle(Coordinate center, int radius) {
+    public Circle(Coordinate center, double radius) {
         this.center = center;
         this.radius = radius;
     }
 
-    public Circle(int x, int y, int radius) {
+    public Circle(double x, double y, double radius) {
         this.center = new Coordinate(x, y);
         this.radius = radius;
     }
@@ -21,7 +21,7 @@ public class Circle{
         return center;
     }
 
-    public int getRadius() {
+    public double getRadius() {
         return radius;
     }
 
