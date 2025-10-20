@@ -29,11 +29,11 @@ public class TownDrawingRenderer implements GLEventListener {
 
         Rectangle sky = new Rectangle(0, 0, 1000, 600);
 
-        Color color = Color.GREEN;
+        Color color = new Color("#8eed91");
 
-        Rectangle rectangle = new Rectangle(trueCenter.x(), 0, 1600, 200);
+        Rectangle ground = new Rectangle(trueCenter.x(), 0, 1600, 200);
         Circle road = new Circle(new Coordinate(100, -1935), 2000);
-        House house = new House(new Coordinate(80, 130), 75, 50, 40,
+        House house = new House(new Coordinate(80, 130), 65, 50, 40,
                 new Color("#b86507"), Color.DARK_BROWN);
         House house1 = new House(new Coordinate(200, 134), 60, 44, 40,
                 new Color("#a86c42"), Color.DARK_BROWN);
@@ -65,9 +65,9 @@ public class TownDrawingRenderer implements GLEventListener {
         staticList = gl.glGenLists(2);
         gl.glNewList(staticList, GL2.GL_COMPILE);
         sky.draw(gl, true, Color.SKY);
-        rectangle.draw(gl, true, color);
+        ground.draw(gl, true, color);
 
-        Color.LIGHT_GRAY.useColorGl(gl);
+        new Color("#b7ca8e").useColorGl(gl);
         gl.glLineWidth(150.0f);
         road.draw(gl);
         gl.glLineWidth(1.0f);
