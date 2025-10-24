@@ -1,5 +1,6 @@
 package Scenes;
 
+import EventListeners.GLEventListeners.FirstQuizRenderer;
 import EventListeners.GLEventListeners.TownDrawingRenderer;
 import EventListeners.PageComponentAdapter;
 import Logic.PageManager;
@@ -24,21 +25,22 @@ public class MainDrawing implements Page {
         addComponents();
         addListeners();
         renderPage();
-        startAnimation();
+        setupAnimator();
 
         PageManager.registerFrameCloseHandler(this, frame);
     }
 
-    private void startAnimation() {
-        FPSAnimator animator = new FPSAnimator(canvas, 60);
-        animator.start();
+    @Override
+    public void setupFrame() {
+        frame.setSize(1500, 900);
+        frame.setLayout(new BorderLayout());
+        frame.setBackground(Color.black);
     }
 
     @Override
-    public void setupFrame() {
-        frame.setSize(1600, 1000);
-        frame.setLayout(new BorderLayout());
-        frame.setBackground(Color.black);
+    public void setupAnimator() {
+        FPSAnimator animator = new FPSAnimator(canvas, 60);
+        animator.start();
     }
 
     @Override
@@ -71,7 +73,7 @@ public class MainDrawing implements Page {
 
     @Override
     public boolean isVisible() {
-        return false;
+        return frame.isVisible();
     }
 
     @Override

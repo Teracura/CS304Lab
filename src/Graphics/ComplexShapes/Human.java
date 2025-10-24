@@ -34,7 +34,7 @@ public class Human {
         Rectangle body = new Rectangle(center, width * 0.3, bodyHeight);
         body.draw(gl, true, bodyColor);
 
-        Coordinate headCenter = new Coordinate(center.x(), center.y() + bodyHeight / 2 + headRadius * 1.2);
+        Coordinate headCenter = new Coordinate(center.x() + limbThickness * 0.5, center.y() + bodyHeight / 2 + headRadius * 1.1);
         Circle head = new Circle(headCenter, headRadius);
         skinColor.useColorGl(gl);
         head.draw(gl, true);

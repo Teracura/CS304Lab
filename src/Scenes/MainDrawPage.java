@@ -35,6 +35,11 @@ public class MainDrawPage implements Page {
         frame.setLayout(new BorderLayout());
     }
 
+    @Override
+    public void setupAnimator() {
+
+    }
+
 
     @Override
     public void addComponents() {

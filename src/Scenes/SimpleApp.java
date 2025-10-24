@@ -41,7 +41,7 @@ public class SimpleApp implements Page {
         layerPane.setLayout(null);
     }
 
-    private void setupAnimator() {
+    public void setupAnimator() {
         canvas = new GLCanvas();
         canvas.setSize(frame.getContentPane().getWidth(), frame.getContentPane().getHeight());
         GLEventListener listener = new RotatingTrianglesRenderer();

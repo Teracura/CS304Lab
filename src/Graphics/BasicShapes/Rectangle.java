@@ -17,6 +17,13 @@ public class Rectangle {
         this.rotation = 0;
     }
 
+    public Rectangle(Coordinate center, double width, double height, double rotation) {
+        this.center = center;
+        this.width = width;
+        this.height = height;
+        this.rotation = rotation;
+    }
+
     public Rectangle(double x, double y, double width, double height) {
         this.center = new Coordinate(x, y);
         this.width = width;
@@ -109,7 +116,7 @@ public class Rectangle {
         if (fill) {
             gl.glBegin(GL2.GL_POLYGON);
             for (Coordinate point : points) {
-                gl.glVertex2d(point.x(), point.y());
+                gl.glVertex2d(point.x() + Math.cos(Math.toRadians(rotation)), point.y() + Math.sin(Math.toRadians(rotation)));
             }
             gl.glEnd();
             return;
@@ -120,6 +127,5 @@ public class Rectangle {
             gl.glVertex2d(point.x(), point.y());
         }
         gl.glEnd();
-
     }
 }

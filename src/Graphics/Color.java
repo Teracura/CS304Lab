@@ -16,7 +16,10 @@ public record Color(double r, double g, double b, double a) {
     public static final Color LIGHT_GRAY = new Color(0.7, 0.7, 0.7, 1);
     public static final Color DARK_GRAY = new Color(0.2, 0.2, 0.2, 1);
     public static final Color DARK_BROWN = new Color(139.0 / 255, 69.0 / 255, 19.0 / 255, 1);
-    public static final Color SKY = new Color(95/255.0, 187/255.0, 227/255.0);
+    public static final Color SKY = new Color(95 / 255.0, 187 / 255.0, 227 / 255.0);
+    public static final Color ORANGE = new Color("#fc7905");
+    public static final Color PURPLE = new Color("#ae05fc");
+
 
     public Color {
         r = clamp(r);
@@ -59,6 +62,10 @@ public record Color(double r, double g, double b, double a) {
 
     public void useColorGl(GL2 gl) {
         gl.glColor4d(r, g, b, a);
+    }
+
+    public void clearColorGl(GL2 gl) {
+        gl.glClearColor((float) r, (float) g, (float) b, (float) a);
     }
 
     public String toHexString() {
