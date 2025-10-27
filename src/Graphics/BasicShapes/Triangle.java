@@ -25,6 +25,23 @@ public class Triangle {
         return center;
     }
 
+    public Triangle copy(){
+        return new Triangle(center.copy(), bottomWidth, height, rotation);
+    }
+
+    public void move(double x, double y){
+        move(new Coordinate(x, y));
+    }
+
+    public void move(Coordinate delta){
+        center = new Coordinate(center.x() + delta.x(), center.y() + delta.y());
+    }
+
+    public void scale(double factor){
+        bottomWidth *= factor;
+        height *= factor;
+    }
+
     public void setCenter(Coordinate center) {
         this.center = center;
     }

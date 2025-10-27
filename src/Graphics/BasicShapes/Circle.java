@@ -9,14 +9,6 @@ public class Circle {
     private final double radius;
     private final Color color;
 
-    private Circle(Coordinate center, double radius) {
-        this(center, radius, Color.WHITE);
-    }
-
-    private Circle(double x, double y, double radius) {
-        this(new Coordinate(x, y), radius, Color.WHITE);
-    }
-
     private Circle(Coordinate center, double radius, Color color) {
         this.center = center;
         this.radius = radius;

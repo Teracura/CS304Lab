@@ -1,7 +1,11 @@
 package EventListeners.GLEventListeners;
 
 import EventListeners.GLEventListeners.Enums.Effect;
+import Graphics.BasicShapes.Triangle;
+import Graphics.Color;
+import Graphics.ComplexShapes.Cloud;
 import Graphics.ComplexShapes.Tree;
+import Graphics.Coordinate;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
@@ -25,8 +29,31 @@ public class PyramidsSceneRenderer implements GLEventListener {
         gl.glOrtho(-400, 400, -300, 300, -1, 1);
 
         staticList = gl.glGenLists(1);
-        gl.glNewList(staticList, GL2.GL_COMPILE);
 
+        Triangle triangle = new Triangle(new Coordinate(0, 0), 250, 200);
+        var triangle1 = triangle.copy();
+        triangle1.move(200, 0);
+        triangle1.scale(0.9);
+        var triangle2 = triangle.copy();
+        triangle2.move(-200, 0);
+        triangle2.scale(1.1);
+
+        Tree tree = new Tree.Builder().setCenter(0, 0).setHeight(100).setThickness(10).setLeafColor(new Color("#2b821f")).build();
+        Tree tree1 = tree.copy();
+        tree.move(330, -30);
+        tree.scale(2);
+        tree1.move(-320, -230);
+        tree1.scale(3);
+
+        Cloud cloud = new Cloud(new Coordinate(250, 220), 70);
+
+        gl.glNewList(staticList, GL2.GL_COMPILE);
+        triangle.draw(gl, true, Color.YELLOW);
+        triangle1.draw(gl, true, Color.YELLOW);
+        triangle2.draw(gl, true, Color.YELLOW);
+        tree.draw(gl);
+        tree1.draw(gl);
+        cloud.draw(gl);
         gl.glEndList();
     }
 

@@ -11,6 +11,6 @@ public class Main {
         var pyramids = new Pyramids();
         PageManager.init();
         PageManager.showPage(pyramids);
-        PageManager.showPage(mainDrawing);
+//        PageManager.showPage(mainDrawing);
     }
 }

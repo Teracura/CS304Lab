@@ -5,9 +5,10 @@ import Graphics.BasicShapes.Rectangle;
 import Graphics.BasicShapes.Triangle;
 import Graphics.Color;
 import Graphics.Coordinate;
+import Graphics.Shape;
 import com.jogamp.opengl.GL2;
 
-public class Tree {
+public class Tree implements Shape {
     Coordinate baseCenter;
     double height;
     double thickness;
@@ -28,6 +29,12 @@ public class Tree {
         this.trunkColor = trunkColor;
     }
 
+    @Override
+    public void move(double x, double y) {
+        baseCenter = new Coordinate(baseCenter.x() + x, baseCenter.y() + y);
+    }
+
+    @Override
     public void draw(GL2 gl) {
         double trunkHeight = height * 0.4;
         double leafHeight = useTrianglesForLeaves ? height * 0.9 : height * 0.6;
@@ -35,6 +42,22 @@ public class Tree {
 
         drawTrunk(gl, trunkHeight);
         drawLeaves(gl, leafBaseY, leafHeight);
+    }
+
+    @Override
+    public void rotate(double angle) {
+
+    }
+
+    @Override
+    public void scale(double scaleFactor) {
+        height *= scaleFactor;
+        thickness *= scaleFactor;
+    }
+
+    @Override
+    public Tree copy() {
+        return new Tree(baseCenter, height, thickness, leafColor, trunkColor, useTrianglesForLeaves, useTriangleTrunk);
     }
 
 
