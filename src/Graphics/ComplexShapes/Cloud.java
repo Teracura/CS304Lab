@@ -34,23 +34,20 @@ public class Cloud implements Shape {
                 .setCenter(center)
                 .setRadius(radius)
                 .setColor(color)
+                .setFill(true)
                 .build();
 
-        Circle left = new Circle.Builder()
-                .setCenter(center.x() - spread, center.y())
-                .setRadius(radius * 0.8)
-                .setColor(color)
-                .build();
+        Circle left = main.copy();
+        Circle right = main.copy();
 
-        Circle right = new Circle.Builder()
-                .setCenter(center.x() + spread, center.y())
-                .setRadius(radius * 0.8)
-                .setColor(color)
-                .build();
+        left.move(-spread, 0);
+        left.scale(0.8);
+        right.move(spread, 0);
+        right.scale(0.8);
 
-        main.draw(gl, true);
-        left.draw(gl, true);
-        right.draw(gl, true);
+        main.draw(gl);
+        left.draw(gl);
+        right.draw(gl);
     }
 
     @Override

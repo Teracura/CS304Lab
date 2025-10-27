@@ -31,6 +31,7 @@ public class SolarSystemRenderer implements GLEventListener {
                 .setCenter(0, 0)
                 .setRadius(50)
                 .setColor(Color.YELLOW)
+                .setFill(true)
                 .build();
 
         Circle circle1 = new Circle.Builder()
@@ -49,22 +50,24 @@ public class SolarSystemRenderer implements GLEventListener {
                 .setCenter(100, 0)
                 .setRadius(15)
                 .setColor(Color.RED)
+                .setFill(true)
                 .build();
 
         Circle planet1 = new Circle.Builder()
                 .setCenter(150, 0)
                 .setRadius(10)
                 .setColor(Color.BLUE)
+                .setFill(true)
                 .build();
 
         staticList = gl.glGenLists(1);
         gl.glNewList(staticList, GL2.GL_COMPILE);
 
-        circle.draw(gl, true);
-        circle1.draw(gl, false);
-        circle2.draw(gl, false);
-        planet.draw(gl, true);
-        planet1.draw(gl, true);
+        circle.draw(gl);
+        circle1.draw(gl);
+        circle2.draw(gl);
+        planet.draw(gl);
+        planet1.draw(gl);
 
         gl.glEndList();
 

@@ -41,8 +41,10 @@ public class Human {
     private void drawHead(GL2 gl, double headRadius, double bodyHeight, double limbThickness) {
         Coordinate headCenter = new Coordinate(center.x() + limbThickness * 0.5,
                 center.y() + bodyHeight / 2 + headRadius * 1.1);
-        Circle head = new Circle.Builder().setCenter(headCenter).setRadius(headRadius).setColor(skinColor).build();
-        head.draw(gl, true);
+        Circle head = new Circle.Builder().setCenter(headCenter).setRadius(headRadius).setColor(skinColor)
+                .setFill(true)
+                .build();
+        head.draw(gl);
     }
 
     private void drawArms(GL2 gl, double bodyHeight, double limbLength, double limbThickness) {

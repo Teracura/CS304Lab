@@ -50,10 +50,10 @@ public class House {
         double doorHeight = wallHeight * 0.7;
         Coordinate doorCenter = new Coordinate(x - width / 5, wallCenter.y() - wallHeight / 2 + doorHeight / 2);
         Rectangle door = new Rectangle(doorCenter, doorWidth, doorHeight);
-        Circle doorHandle = new Circle.Builder().setCenter(doorCenter.x() + doorWidth / 5, doorCenter.y())
+        Circle doorHandle = new Circle.Builder().setFill(true).setCenter(doorCenter.x() + doorWidth / 5, doorCenter.y())
                 .setRadius(doorWidth / 10).setColor(Color.YELLOW).build();
         door.draw(gl, fill, doorColor);
-        doorHandle.draw(gl, fill);
+        doorHandle.draw(gl);
 
         double windowSize = wallHeight * 0.35;
         double windowOffsetX = width / 4;

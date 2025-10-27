@@ -12,6 +12,10 @@ public record Coordinate(double x, double y) {
         return Math.sqrt(dx * dx + dy * dy);
     }
 
+    public Coordinate add(Coordinate other) {
+        return new Coordinate(x + other.x, y + other.y);
+    }
+
     @Override
     public String toString() {
         return "(%.2f, %.2f)".formatted(x, y);

@@ -72,24 +72,28 @@ public class TownDrawingRenderer implements GLEventListener {
                 .setCenter(140, 95)
                 .setRadius(11)
                 .setColor(bushColor)
+                .setFill(true)
                 .build();
 
         Circle bush1 = new Circle.Builder()
                 .setCenter(250, 90)
                 .setRadius(8)
                 .setColor(bushColor)
+                .setFill(true)
                 .build();
 
         Circle bush2 = new Circle.Builder()
                 .setCenter(259, 93)
                 .setRadius(11)
                 .setColor(bushColor)
+                .setFill(true)
                 .build();
 
         Circle bush3 = new Circle.Builder()
                 .setCenter(375, 95)
                 .setRadius(8)
                 .setColor(bushColor)
+                .setFill(true)
                 .build();
 
         Sun sun = new Sun.Builder()
@@ -136,10 +140,10 @@ public class TownDrawingRenderer implements GLEventListener {
         cloud.draw(gl);
         cloud1.draw(gl);
         bushColor.useColorGl(gl);
-        bush.draw(gl, true);
-        bush1.draw(gl, true);
-        bush2.draw(gl, true);
-        bush3.draw(gl, true);
+        bush.draw(gl);
+        bush1.draw(gl);
+        bush2.draw(gl);
+        bush3.draw(gl);
 
         human.draw(gl);
         human1.draw(gl);

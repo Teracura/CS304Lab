@@ -33,17 +33,20 @@ public class FirstQuizRenderer implements GLEventListener {
                 .setCenter(center.x() + 200, 150 + 70)
                 .setRadius(70)
                 .setColor(Color.DARK_GRAY)
+                .setFill(true)
                 .build();
 
         Circle circle1 = new Circle.Builder()
                 .setCenter(center.x() - 200, 150 + 70)
                 .setRadius(70)
                 .setColor(Color.DARK_GRAY)
+                .setFill(true)
                 .build();
 
         Circle circle2 = new Circle.Builder()
                 .setCenter(center.x() + 280, 150 + 135)
                 .setRadius(25)
+                .setFill(true)
                 .setColor(Color.YELLOW)
                 .build();
 
@@ -64,10 +67,10 @@ public class FirstQuizRenderer implements GLEventListener {
         rectangle.draw(gl, true, Color.RED);
         rectangle1.draw(gl, true, Color.GRAY);
 
-        circle.draw(gl, true);
-        circle1.draw(gl, true);
+        circle.draw(gl);
+        circle1.draw(gl);
 
-        circle2.draw(gl, true);
+        circle2.draw(gl);
 
         rectangle3.draw(gl, true, Color.GRAY);
         triangle2.draw(gl, true, Color.GRAY);

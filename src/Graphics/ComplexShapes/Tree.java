@@ -46,7 +46,7 @@ public class Tree implements Shape {
 
     @Override
     public void rotate(double angle) {
-
+        //rotation not supported yet
     }
 
     @Override
@@ -82,22 +82,25 @@ public class Tree implements Shape {
                     .setCenter(baseCenter.x(), leafBaseY + radius * 1.5)
                     .setRadius(radius)
                     .setColor(leafColor)
+                    .setFill(true)
                     .build()
-                    .draw(gl, true);
+                    .draw(gl);
 
             new Circle.Builder()
                     .setCenter(baseCenter.x() - radius * 0.7, leafBaseY)
                     .setRadius(radius)
                     .setColor(leafColor)
+                    .setFill(true)
                     .build()
-                    .draw(gl, true);
+                    .draw(gl);
 
             new Circle.Builder()
                     .setCenter(baseCenter.x() + radius * 0.7, leafBaseY)
                     .setRadius(radius)
                     .setColor(leafColor)
+                    .setFill(true)
                     .build()
-                    .draw(gl, true);
+                    .draw(gl);
 
         } else {
             double triBase = thickness * 3;

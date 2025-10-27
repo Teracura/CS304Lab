@@ -21,7 +21,7 @@ public class Sun {
     }
 
     public void draw(GL2 gl) {
-        new Circle.Builder().setCenter(center).setRadius(radius).setColor(color).build().draw(gl, true);
+        new Circle.Builder().setCenter(center).setRadius(radius).setColor(color).setFill(true).build().draw(gl);
 
         gl.glLineWidth(2.0f);
         gl.glBegin(GL2.GL_LINES);
