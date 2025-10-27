@@ -16,9 +16,9 @@ public class Tree {
     Color leafColor;
     Color trunkColor;
 
-    public Tree(Coordinate baseCenter, double height, double thickness,
-                Color leafColor, Color trunkColor,
-                boolean useTrianglesForLeaves, boolean useTriangleTrunk) {
+    private Tree(Coordinate baseCenter, double height, double thickness,
+                 Color leafColor, Color trunkColor,
+                 boolean useTrianglesForLeaves, boolean useTriangleTrunk) {
         this.baseCenter = baseCenter;
         this.height = height;
         this.thickness = thickness;
@@ -28,64 +28,119 @@ public class Tree {
         this.trunkColor = trunkColor;
     }
 
-
-    public Tree(Coordinate baseCenter, double height, double thickness,
-                Color leafColor, Color trunkColor) {
-        this.baseCenter = baseCenter;
-        this.height = height;
-        this.thickness = thickness;
-        this.useTrianglesForLeaves = false;
-        this.useTriangleTrunk = false;
-        this.leafColor = leafColor;
-        this.trunkColor = trunkColor;
-    }
-
     public void draw(GL2 gl) {
         double trunkHeight = height * 0.4;
-        double leafHeight = height * 0.6;
-        if (useTrianglesForLeaves)  leafHeight = height * 0.9;
-
-        if (useTriangleTrunk) {
-            Triangle trunk = new Triangle(
-                    new Coordinate(baseCenter.x(), baseCenter.y() + trunkHeight / 2),
-                    thickness, trunkHeight * 1.2
-            );
-            trunk.draw(gl, true, trunkColor);
-        } else {
-            Rectangle trunk = new Rectangle(
-                    new Coordinate(baseCenter.x(), baseCenter.y() + trunkHeight / 2),
-                    thickness, trunkHeight
-            );
-            trunk.draw(gl, true, trunkColor);
-        }
-
+        double leafHeight = useTrianglesForLeaves ? height * 0.9 : height * 0.6;
         double leafBaseY = baseCenter.y() + trunkHeight;
 
+        drawTrunk(gl, trunkHeight);
+        drawLeaves(gl, leafBaseY, leafHeight);
+    }
+
+
+    private void drawTrunk(GL2 gl, double trunkHeight) {
+        if (useTriangleTrunk) {
+            new Triangle(
+                    new Coordinate(baseCenter.x(), baseCenter.y() + trunkHeight / 2),
+                    thickness, trunkHeight * 1.2
+            ).draw(gl, true, trunkColor);
+        } else {
+            new Rectangle(
+                    new Coordinate(baseCenter.x(), baseCenter.y() + trunkHeight / 2),
+                    thickness, trunkHeight
+            ).draw(gl, true, trunkColor);
+        }
+    }
+
+    private void drawLeaves(GL2 gl, double leafBaseY, double leafHeight) {
         if (!useTrianglesForLeaves) {
             double radius = leafHeight / 3;
-            Coordinate c1 = new Coordinate(baseCenter.x(), leafBaseY + radius * 1.5);
-            Coordinate c2 = new Coordinate(baseCenter.x() - radius * 0.7, leafBaseY);
-            Coordinate c3 = new Coordinate(baseCenter.x() + radius * 0.7, leafBaseY);
-
             leafColor.useColorGl(gl);
-            new Circle(c1, radius).draw(gl, true);
-            new Circle(c2, radius).draw(gl, true);
-            new Circle(c3, radius).draw(gl, true);
+            new Circle(new Coordinate(baseCenter.x(), leafBaseY + radius * 1.5), radius).draw(gl, true);
+            new Circle(new Coordinate(baseCenter.x() - radius * 0.7, leafBaseY), radius).draw(gl, true);
+            new Circle(new Coordinate(baseCenter.x() + radius * 0.7, leafBaseY), radius).draw(gl, true);
         } else {
             double triBase = thickness * 3;
             double triHeight = leafHeight / 2;
 
-            Triangle lower = new Triangle(
-                    new Coordinate(baseCenter.x(), leafBaseY + triHeight / 2),
-                    triBase * 0.8, triHeight, 0
-            );
-            Triangle upper = new Triangle(
-                    new Coordinate(baseCenter.x(), leafBaseY + triHeight / 1.3),
-                    triBase, triHeight, 0
-            );
-
-            lower.draw(gl, true, leafColor);
-            upper.draw(gl, true, leafColor);
+            new Triangle(new Coordinate(baseCenter.x(), leafBaseY + triHeight / 2),
+                    triBase * 0.8, triHeight, 0).draw(gl, true, leafColor);
+            new Triangle(new Coordinate(baseCenter.x(), leafBaseY + triHeight / 1.3),
+                    triBase, triHeight, 0).draw(gl, true, leafColor);
         }
     }
+
+    public static class Builder {
+        private Coordinate baseCenter;
+        private double height;
+        private double thickness;
+        private boolean useTrianglesForLeaves;
+        private boolean useTriangleTrunk;
+        private Color leafColor;
+        private Color trunkColor;
+
+        public Builder() {
+        } // public so you can access it
+
+        public Builder setBaseCenter(Coordinate baseCenter) {
+            this.baseCenter = baseCenter;
+            return this;
+        }
+
+        public Builder setHeight(double height) {
+            this.height = height;
+            return this;
+        }
+
+        public Builder setThickness(double thickness) {
+            this.thickness = thickness;
+            return this;
+        }
+
+        public Builder setCenter(Coordinate coordinate) {
+            this.baseCenter = coordinate;
+            return this;
+        }
+
+        public Builder setCenter(double x, double y) {
+            this.baseCenter = new Coordinate(x, y);
+            return this;
+        }
+
+        public Builder setUseTrianglesForLeaves(boolean useTrianglesForLeaves) {
+            this.useTrianglesForLeaves = useTrianglesForLeaves;
+            return this;
+        }
+
+        public Builder setUseTriangleTrunk(boolean useTriangleTrunk) {
+            this.useTriangleTrunk = useTriangleTrunk;
+            return this;
+        }
+
+        public Builder setLeafColor(Color leafColor) {
+            this.leafColor = leafColor;
+            return this;
+        }
+
+        public Builder setTrunkColor(Color trunkColor) {
+            this.trunkColor = trunkColor;
+            return this;
+        }
+
+        public Tree build() {
+            if (baseCenter == null)
+                throw new IllegalArgumentException("Base center cannot be null");
+            if (height <= 0 || thickness <= 0) {
+                throw new IllegalArgumentException("Height and thickness must be positive");
+            }
+            if (leafColor == null)
+                leafColor = Color.GREEN;
+            if (trunkColor == null)
+                trunkColor = Color.DARK_BROWN;
+
+            return new Tree(baseCenter, height, thickness, leafColor, trunkColor,
+                    useTrianglesForLeaves, useTriangleTrunk);
+        }
+    }
+
 }

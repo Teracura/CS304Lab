@@ -40,9 +40,27 @@ public class TownDrawingRenderer implements GLEventListener {
         House house2 = new House(new Coordinate(350, 134), 60, 44, 40,
                 new Color("#dbaf7d"), Color.DARK_BROWN);
 
-        Tree tree = new Tree(new Coordinate(250,90), 90, 10, new Color("#2b821f"), Color.DARK_BROWN);
-        Tree tree1 = new Tree(new Coordinate(400,95), 50, 9, new Color("#2b821f"), Color.DARK_BROWN, true, false);
-        Tree tree2 = new Tree(new Coordinate(450,95), 50, 7, new Color("#2b821f"), Color.DARK_BROWN);
+        Tree tree = new Tree.Builder()
+                .setCenter(250, 90)
+                .setHeight(90)
+                .setThickness(10)
+                .setLeafColor(new Color("#2b821f"))
+                .build();
+
+        Tree tree1 = new Tree.Builder()
+                .setCenter(400, 95)
+                .setHeight(50)
+                .setThickness(9)
+                .setLeafColor(new Color("#2b821f"))
+                .setUseTrianglesForLeaves(true)
+                .build();
+
+        Tree tree2 = new Tree.Builder()
+                .setCenter(450, 95)
+                .setHeight(50)
+                .setThickness(7)
+                .setLeafColor(new Color("#2b821f"))
+                .build();
 
         Cloud cloud = new Cloud(new Coordinate(76, 270), 25);
         Cloud cloud1 = new Cloud(new Coordinate(300, 250), 15);

@@ -1,17 +1,16 @@
 import Logic.PageManager;
-import Scenes.MainDrawPage;
-import Scenes.MainDrawing;
-import Scenes.SimpleApp;
-import Scenes.SolarSystem;
+import Scenes.*;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args){
         var mainDrawPage = new MainDrawPage();
         var circlePage = new SimpleApp();
         var mainDrawing = new MainDrawing();
-        var SolarSystem = new SolarSystem();
+        var solarSystem = new SolarSystem();
+        var pyramids = new Pyramids();
         PageManager.init();
-        PageManager.showPage(SolarSystem);
+        PageManager.showPage(pyramids);
+        PageManager.showPage(mainDrawing);
     }
 }

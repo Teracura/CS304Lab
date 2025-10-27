@@ -1,6 +1,6 @@
 package EventListeners.GLEventListeners.Enums;
 
-public enum SolarSystemButtonEffect {
+public enum Effect {
     DEFAULT,
     ZOOM_IN,
     ZOOM_OUT,

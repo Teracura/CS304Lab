@@ -1,6 +1,6 @@
 package Scenes;
 
-import EventListeners.GLEventListeners.Enums.SolarSystemButtonEffect;
+import EventListeners.GLEventListeners.Enums.Effect;
 import EventListeners.GLEventListeners.SolarSystemRenderer;
 import EventListeners.PageComponentAdapter;
 import Logic.PageManager;
@@ -97,18 +97,18 @@ public class SolarSystem implements Page {
         try {
             switch (command) {
                 case "zoom-in":
-                    renderer.setEffect(SolarSystemButtonEffect.ZOOM_IN);
+                    renderer.setEffect(Effect.ZOOM_IN);
                     break;
                 case "zoom-out":
-                    renderer.setEffect(SolarSystemButtonEffect.ZOOM_OUT);
+                    renderer.setEffect(Effect.ZOOM_OUT);
                     break;
                 case "rotate-clockwise":
                     renderer.setRotationAmount(Float.parseFloat(angle.getText()));
-                    renderer.setEffect(SolarSystemButtonEffect.ROTATE_CLOCKWISE);
+                    renderer.setEffect(Effect.ROTATE_CLOCKWISE);
                     break;
                 case "rotate-counter-clockwise":
                     renderer.setRotationAmount(Float.parseFloat(angle.getText()));
-                    renderer.setEffect(SolarSystemButtonEffect.ROTATE_COUNTERCLOCKWISE);
+                    renderer.setEffect(Effect.ROTATE_COUNTERCLOCKWISE);
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown command: " + command);
