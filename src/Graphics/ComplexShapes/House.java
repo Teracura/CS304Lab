@@ -8,15 +8,15 @@ import Graphics.Coordinate;
 import com.jogamp.opengl.GL2;
 
 public class House {
-    private Coordinate center;
-    private double width;
-    private double wallHeight;
-    private double roofHeight;
-    private double doorWidth;
-    private Color roofColor;
-    private Color wallColor;
-    private Color doorColor;
-    private Color windowColor;
+    private final Coordinate center;
+    private final double width;
+    private final double wallHeight;
+    private final double roofHeight;
+    private final double doorWidth;
+    private final Color roofColor;
+    private final Color wallColor;
+    private final Color doorColor;
+    private final Color windowColor;
 
     public House(Coordinate center, double width, double wallHeight, double roofHeight,
                  Color wallColor, Color roofColor) {
@@ -50,9 +50,9 @@ public class House {
         double doorHeight = wallHeight * 0.7;
         Coordinate doorCenter = new Coordinate(x - width / 5, wallCenter.y() - wallHeight / 2 + doorHeight / 2);
         Rectangle door = new Rectangle(doorCenter, doorWidth, doorHeight);
-        Circle doorHandle = new Circle(doorCenter.x() + doorWidth / 5, doorCenter.y(), doorWidth / 10);
+        Circle doorHandle = new Circle.Builder().setCenter(doorCenter.x() + doorWidth / 5, doorCenter.y())
+                .setRadius(doorWidth / 10).setColor(Color.YELLOW).build();
         door.draw(gl, fill, doorColor);
-        Color.YELLOW.useColorGl(gl);
         doorHandle.draw(gl, fill);
 
         double windowSize = wallHeight * 0.35;

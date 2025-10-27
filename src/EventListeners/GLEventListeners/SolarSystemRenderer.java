@@ -26,25 +26,48 @@ public class SolarSystemRenderer implements GLEventListener {
         gl.glMatrixMode(GL2.GL_PROJECTION);
         gl.glLoadIdentity();
         gl.glOrtho(-400, 400, -300, 300, -1, 1);
-        var circle = new Circle(new Coordinate(0, 0), 50);
-        var circle1 = new Circle(new Coordinate(0, 0), 100);
-        var circle2 = new Circle(new Coordinate(0, 0), 150);
-        var planet = new Circle(new Coordinate(100, 0), 15);
-        var planet1 = new Circle(new Coordinate(150, 0), 10);
+
+        Circle circle = new Circle.Builder()
+                .setCenter(0, 0)
+                .setRadius(50)
+                .setColor(Color.YELLOW)
+                .build();
+
+        Circle circle1 = new Circle.Builder()
+                .setCenter(0, 0)
+                .setRadius(100)
+                .setColor(Color.WHITE)
+                .build();
+
+        Circle circle2 = new Circle.Builder()
+                .setCenter(0, 0)
+                .setRadius(150)
+                .setColor(Color.WHITE)
+                .build();
+
+        Circle planet = new Circle.Builder()
+                .setCenter(100, 0)
+                .setRadius(15)
+                .setColor(Color.RED)
+                .build();
+
+        Circle planet1 = new Circle.Builder()
+                .setCenter(150, 0)
+                .setRadius(10)
+                .setColor(Color.BLUE)
+                .build();
 
         staticList = gl.glGenLists(1);
         gl.glNewList(staticList, GL2.GL_COMPILE);
-        Color.YELLOW.useColorGl(gl);
+
         circle.draw(gl, true);
-        Color.WHITE.useColorGl(gl);
         circle1.draw(gl, false);
         circle2.draw(gl, false);
-        Color.RED.useColorGl(gl);
-        planet.draw(gl,true);
-        Color.BLUE.useColorGl(gl);
-        planet1.draw(gl,true);
+        planet.draw(gl, true);
+        planet1.draw(gl, true);
 
         gl.glEndList();
+
     }
 
     @Override
@@ -67,7 +90,7 @@ public class SolarSystemRenderer implements GLEventListener {
             case ZOOM_OUT:
                 if (scaleFactor - 0.1 <= 0) {
                     scaleFactor = 0.01f;
-                } else{
+                } else {
                     scaleFactor -= 0.1f;
                 }
                 effect = Effect.DEFAULT;

@@ -29,35 +29,44 @@ public class FirstQuizRenderer implements GLEventListener {
 
         staticList = gl.glGenLists(2);
 
-        //draw stuff here
-        //    public Rectangle(Coordinate center, double width, double height, double rotation) {
-        //
-        //    public Triangle(Coordinate center, double bottomWidth, double height, double rotation) {
+        Circle circle = new Circle.Builder()
+                .setCenter(center.x() + 200, 150 + 70)
+                .setRadius(70)
+                .setColor(Color.DARK_GRAY)
+                .build();
 
-        Circle circle = new Circle(new Coordinate(center.x() + 200, 150 + 70), 70);
-        Circle circle1 = new  Circle(new Coordinate(center.x() - 200, 150 + 70), 70);
+        Circle circle1 = new Circle.Builder()
+                .setCenter(center.x() - 200, 150 + 70)
+                .setRadius(70)
+                .setColor(Color.DARK_GRAY)
+                .build();
+
+        Circle circle2 = new Circle.Builder()
+                .setCenter(center.x() + 280, 150 + 135)
+                .setRadius(25)
+                .setColor(Color.YELLOW)
+                .build();
+
         Rectangle rectangle = new Rectangle(new Coordinate(center.x(), 150 + 35 + 100), 600, 115);
         Rectangle rectangle1 = new Rectangle(new Coordinate(center.x() - 300, 150 + 35 + 100 + 50), 20, 20);
+        Rectangle rectangle2 = new Rectangle(new Coordinate(center.x(), center.y() + 65), 210, 90);
+        Rectangle rectangle3 = new Rectangle(new Coordinate(center.x(), center.y() + 75), 100, 50);
+
         Triangle triangle = new Triangle(new Coordinate(center.x() - 100, center.y() + 65), 140, 90, 0);
-        Triangle triangle1 = new Triangle(new Coordinate(center.x() + 100, center.y() + 65), 140,90, 0);
-        Rectangle rectangle2 = new Rectangle(new Coordinate(center.x(), center.y() + 65), 210,90);
-        Rectangle rectangle3 = new Rectangle(new Coordinate(center.x(), center.y() + 75), 100,50);
-        Circle circle2 = new Circle(new Coordinate(center.x() + 280, 150 + 135), 25);
-        Triangle triangle2 = new Triangle(new Coordinate(center.x() - 100, center.y() + 75), 60,60);
+        Triangle triangle1 = new Triangle(new Coordinate(center.x() + 100, center.y() + 65), 140, 90, 0);
+        Triangle triangle2 = new Triangle(new Coordinate(center.x() - 100, center.y() + 75), 60, 60);
 
 
         gl.glNewList(staticList, GL2.GL_COMPILE);
-        triangle.draw(gl, true, new Color(0.5, 0,0, 1));
-        triangle1.draw(gl, true, new Color(0.5, 0,0, 1));
-        rectangle2.draw(gl, true, new Color(0.5, 0,0, 1));
+        triangle.draw(gl, true, new Color(0.5, 0, 0, 1));
+        triangle1.draw(gl, true, new Color(0.5, 0, 0, 1));
+        rectangle2.draw(gl, true, new Color(0.5, 0, 0, 1));
         rectangle.draw(gl, true, Color.RED);
         rectangle1.draw(gl, true, Color.GRAY);
 
-        Color.DARK_GRAY.useColorGl(gl);
         circle.draw(gl, true);
         circle1.draw(gl, true);
 
-        Color.YELLOW.useColorGl(gl);
         circle2.draw(gl, true);
 
         rectangle3.draw(gl, true, Color.GRAY);

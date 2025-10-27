@@ -25,7 +25,7 @@ public class RotatingTrianglesRenderer implements GLEventListener {
         gl.glLoadIdentity();
         gl.glOrtho(0, 500, 0, 300, -1, 1);
         angle = 0;
-        circle = new Circle(center, radius);
+        circle = new Circle.Builder().setCenter(center).setRadius(radius).build();
 
         staticList = gl.glGenLists(1);
         gl.glNewList(staticList, GL2.GL_COMPILE);

@@ -23,13 +23,27 @@ public class Cloud {
     }
 
     public void draw(GL2 gl) {
-        Circle main = new Circle(center, radius);
-        Circle left = new Circle(new Coordinate(center.x() - spread, center.y()), radius * 0.8);
-        Circle right = new Circle(new Coordinate(center.x() + spread, center.y()), radius * 0.8);
+        Circle main = new Circle.Builder()
+                .setCenter(center)
+                .setRadius(radius)
+                .setColor(color)
+                .build();
 
-        color.useColorGl(gl);
+        Circle left = new Circle.Builder()
+                .setCenter(center.x() - spread, center.y())
+                .setRadius(radius * 0.8)
+                .setColor(color)
+                .build();
+
+        Circle right = new Circle.Builder()
+                .setCenter(center.x() + spread, center.y())
+                .setRadius(radius * 0.8)
+                .setColor(color)
+                .build();
+
         main.draw(gl, true);
         left.draw(gl, true);
         right.draw(gl, true);
     }
+
 }

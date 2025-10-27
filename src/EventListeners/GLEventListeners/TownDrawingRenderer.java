@@ -32,7 +32,8 @@ public class TownDrawingRenderer implements GLEventListener {
         Color color = new Color("#8eed91");
 
         Rectangle ground = new Rectangle(trueCenter.x(), 0, 1600, 200);
-        Circle road = new Circle(new Coordinate(100, -1935), 2000);
+        Circle road = new Circle.Builder().setCenter(100, -1935).setRadius(2000).setColor(new Color("#b7ca8e")).build();
+
         House house = new House(new Coordinate(80, 130), 65, 50, 40,
                 new Color("#b86507"), Color.DARK_BROWN);
         House house1 = new House(new Coordinate(200, 134), 60, 44, 40,
@@ -66,18 +67,54 @@ public class TownDrawingRenderer implements GLEventListener {
         Cloud cloud1 = new Cloud(new Coordinate(300, 250), 15);
 
         Color bushColor = new Color(52 / 255.0, 191 / 255.0, 90 / 255.0);
-        Circle bush = new Circle(new Coordinate(140, 95), 11);
-        Circle bush1 = new Circle(new Coordinate(250, 90), 8);
-        Circle bush2 = new Circle(new Coordinate(259, 93), 11);
-        Circle bush3 = new Circle(new Coordinate(375, 95), 8);
 
-        Sun sun = new Sun(new Coordinate(460, 260), 30);
-        Fence fence = new Fence(new Coordinate(20,80), 120, 20, 2,8);
+        Circle bush = new Circle.Builder()
+                .setCenter(140, 95)
+                .setRadius(11)
+                .setColor(bushColor)
+                .build();
 
-        Human human = new Human(new Coordinate(230, 95), 25,10,
-                Color.BLUE, new Color("#F5DEB3"));
-        Human human1 = new Human(new Coordinate(300,95), 20,10,
-                Color.RED, new Color("#F5DEB3"));
+        Circle bush1 = new Circle.Builder()
+                .setCenter(250, 90)
+                .setRadius(8)
+                .setColor(bushColor)
+                .build();
+
+        Circle bush2 = new Circle.Builder()
+                .setCenter(259, 93)
+                .setRadius(11)
+                .setColor(bushColor)
+                .build();
+
+        Circle bush3 = new Circle.Builder()
+                .setCenter(375, 95)
+                .setRadius(8)
+                .setColor(bushColor)
+                .build();
+
+        Sun sun = new Sun.Builder()
+                .setCenter(460, 260)
+                .setRadius(30)
+                .setColor(Color.YELLOW)
+                .setRayCount(12)
+                .build();
+
+        Fence fence = new Fence(new Coordinate(20, 80), 120, 20, 2, 8);
+
+        Human human = new Human.Builder()
+                .setCenter(230, 95)
+                .setHeight(25)
+                .setWidth(10)
+                .setSkinColor(new Color("#F5DEB3"))
+                .build();
+
+        Human human1 = new Human.Builder()
+                .setCenter(300, 95)
+                .setHeight(20)
+                .setWidth(10)
+                .setBodyColor(Color.RED)
+                .setSkinColor(new Color("#F5DEB3"))
+                .build();
 
 
         staticList = gl.glGenLists(2);
@@ -85,7 +122,6 @@ public class TownDrawingRenderer implements GLEventListener {
         sky.draw(gl, true, Color.SKY);
         ground.draw(gl, true, color);
 
-        new Color("#b7ca8e").useColorGl(gl);
         gl.glLineWidth(150.0f);
         road.draw(gl);
         gl.glLineWidth(1.0f);
@@ -102,8 +138,8 @@ public class TownDrawingRenderer implements GLEventListener {
         bushColor.useColorGl(gl);
         bush.draw(gl, true);
         bush1.draw(gl, true);
-        bush2.draw(gl,true);
-        bush3.draw(gl,true);
+        bush2.draw(gl, true);
+        bush3.draw(gl, true);
 
         human.draw(gl);
         human1.draw(gl);

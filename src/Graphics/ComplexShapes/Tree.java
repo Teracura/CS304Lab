@@ -55,10 +55,27 @@ public class Tree {
     private void drawLeaves(GL2 gl, double leafBaseY, double leafHeight) {
         if (!useTrianglesForLeaves) {
             double radius = leafHeight / 3;
-            leafColor.useColorGl(gl);
-            new Circle(new Coordinate(baseCenter.x(), leafBaseY + radius * 1.5), radius).draw(gl, true);
-            new Circle(new Coordinate(baseCenter.x() - radius * 0.7, leafBaseY), radius).draw(gl, true);
-            new Circle(new Coordinate(baseCenter.x() + radius * 0.7, leafBaseY), radius).draw(gl, true);
+            new Circle.Builder()
+                    .setCenter(baseCenter.x(), leafBaseY + radius * 1.5)
+                    .setRadius(radius)
+                    .setColor(leafColor)
+                    .build()
+                    .draw(gl, true);
+
+            new Circle.Builder()
+                    .setCenter(baseCenter.x() - radius * 0.7, leafBaseY)
+                    .setRadius(radius)
+                    .setColor(leafColor)
+                    .build()
+                    .draw(gl, true);
+
+            new Circle.Builder()
+                    .setCenter(baseCenter.x() + radius * 0.7, leafBaseY)
+                    .setRadius(radius)
+                    .setColor(leafColor)
+                    .build()
+                    .draw(gl, true);
+
         } else {
             double triBase = thickness * 3;
             double triHeight = leafHeight / 2;
@@ -80,7 +97,7 @@ public class Tree {
         private Color trunkColor;
 
         public Builder() {
-        } // public so you can access it
+        }
 
         public Builder setBaseCenter(Coordinate baseCenter) {
             this.baseCenter = baseCenter;
