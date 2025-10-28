@@ -27,11 +27,14 @@ public class TownDrawingRenderer implements GLEventListener {
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
 
-        Rectangle sky = new Rectangle(0, 0, 1000, 600);
+        Rectangle sky = new Rectangle.Builder().setCenter(0, 0).setWidth(1000)
+                .setHeight(600).setFill(true).setColor(Color.SKY).build();
 
-        Color color = new Color("#8eed91");
-
-        Rectangle ground = new Rectangle(trueCenter.x(), 0, 1600, 200);
+        Rectangle ground = new Rectangle.Builder().setCenter(trueCenter.x(), 0)
+                .setWidth(1600)
+                .setColor(new Color("#8eed91"))
+                .setFill(true)
+                .setHeight(200).build();
         Circle road = new Circle.Builder().setCenter(100, -1935).setRadius(2000).setColor(new Color("#b7ca8e")).build();
 
         House house = new House(new Coordinate(80, 130), 65, 50, 40,
@@ -123,8 +126,8 @@ public class TownDrawingRenderer implements GLEventListener {
 
         staticList = gl.glGenLists(2);
         gl.glNewList(staticList, GL2.GL_COMPILE);
-        sky.draw(gl, true, Color.SKY);
-        ground.draw(gl, true, color);
+        sky.draw(gl);
+        ground.draw(gl);
 
         gl.glLineWidth(150.0f);
         road.draw(gl);

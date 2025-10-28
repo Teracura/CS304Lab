@@ -63,15 +63,13 @@ public class Tree implements Shape {
 
     private void drawTrunk(GL2 gl, double trunkHeight) {
         if (useTriangleTrunk) {
-            new Triangle(
-                    new Coordinate(baseCenter.x(), baseCenter.y() + trunkHeight / 2),
-                    thickness, trunkHeight * 1.2
-            ).draw(gl, true, trunkColor);
+            new Rectangle.Builder().setCenter(baseCenter.x(), baseCenter.y() + trunkHeight / 2)
+                    .setWidth(thickness).setHeight(trunkHeight * 1.2).setFill(true).setColor(trunkColor).build()
+                    .draw(gl);
         } else {
-            new Rectangle(
-                    new Coordinate(baseCenter.x(), baseCenter.y() + trunkHeight / 2),
-                    thickness, trunkHeight
-            ).draw(gl, true, trunkColor);
+            new Rectangle.Builder().setCenter(baseCenter.x(), baseCenter.y() + trunkHeight / 2)
+                    .setWidth(thickness).setHeight(trunkHeight).setFill(true).setColor(trunkColor).build()
+                    .draw(gl);
         }
     }
 

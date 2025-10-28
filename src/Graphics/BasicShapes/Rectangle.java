@@ -2,33 +2,24 @@ package Graphics.BasicShapes;
 
 import Graphics.Color;
 import Graphics.Coordinate;
+import Graphics.Shape;
 import com.jogamp.opengl.GL2;
 
-public class Rectangle {
+public class Rectangle implements Shape {
     Coordinate center;
     double width;
     double height;
     double rotation;
+    Color color;
+    boolean fill;
 
-    public Rectangle(Coordinate center, double width, double height) {
-        this.center = center;
-        this.width = width;
-        this.height = height;
-        this.rotation = 0;
-    }
-
-    public Rectangle(Coordinate center, double width, double height, double rotation) {
+    private Rectangle(Coordinate center, double width, double height, double rotation, Color color, boolean fill) {
         this.center = center;
         this.width = width;
         this.height = height;
         this.rotation = rotation;
-    }
-
-    public Rectangle(double x, double y, double width, double height) {
-        this.center = new Coordinate(x, y);
-        this.width = width;
-        this.height = height;
-        this.rotation = 0;
+        this.color = color;
+        this.fill = fill;
     }
 
     public Coordinate[] getVertices() {
@@ -40,7 +31,7 @@ public class Rectangle {
                 rotateAndTranslate(new Coordinate(x - halfW, y - halfH)),
                 rotateAndTranslate(new Coordinate(x + halfW, y - halfH)),
                 rotateAndTranslate(new Coordinate(x + halfW, y + halfH)),
-                rotateAndTranslate(new Coordinate(x- halfW, y + halfH))
+                rotateAndTranslate(new Coordinate(x - halfW, y + halfH))
         };
     }
 
@@ -102,15 +93,13 @@ public class Rectangle {
         this.center = new Coordinate(x, y);
     }
 
+    @Override
+    public void move(double x, double y) {
+        center = center.add(new Coordinate(x, y));
+    }
+
+    @Override
     public void draw(GL2 gl) {
-        draw(gl, false);
-    }
-
-    public void draw(GL2 gl, boolean fill) {
-        draw(gl, fill, Color.BLACK);
-    }
-
-    public void draw(GL2 gl, boolean fill, Color color) {
         var points = getVertices();
         color.useColorGl(gl);
         if (fill) {
@@ -127,5 +116,73 @@ public class Rectangle {
             gl.glVertex2d(point.x(), point.y());
         }
         gl.glEnd();
+    }
+
+    @Override
+    public void rotate(double angle) {
+        rotation += angle;
+    }
+
+    @Override
+    public void scale(double scaleFactor) {
+        height *= scaleFactor;
+        width *= scaleFactor;
+    }
+
+    @Override
+    public Rectangle copy() {
+        return new Rectangle(center, width, height, rotation, color, fill);
+    }
+
+    public static class Builder {
+        private Coordinate center;
+        private double width;
+        private double height;
+        private double rotation;
+        private Color color;
+        private boolean fill;
+
+        public Builder setCenter(Coordinate center) {
+            this.center = center;
+            return this;
+        }
+
+        public Builder setCenter(double x, double y) {
+            this.center = new Coordinate(x, y);
+            return this;
+        }
+
+        public Builder setWidth(double width) {
+            this.width = width;
+            return this;
+        }
+
+        public Builder setHeight(double height) {
+            this.height = height;
+            return this;
+        }
+
+        public Builder setRotation(double rotation) {
+            this.rotation = rotation;
+            return this;
+        }
+
+        public Builder setColor(Color color) {
+            this.color = color;
+            return this;
+        }
+
+        public Builder setFill(boolean fill) {
+            this.fill = fill;
+            return this;
+        }
+
+        public Rectangle build() {
+            if (center == null) throw new IllegalArgumentException("Center cannot be null");
+            if (height <= 0) throw new IllegalArgumentException("Height must be positive");
+            if (color == null) color = Color.WHITE;
+
+            return new Rectangle(center, width, height, rotation, color, fill);
+        }
     }
 }

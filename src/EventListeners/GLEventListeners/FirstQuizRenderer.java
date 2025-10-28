@@ -50,10 +50,38 @@ public class FirstQuizRenderer implements GLEventListener {
                 .setColor(Color.YELLOW)
                 .build();
 
-        Rectangle rectangle = new Rectangle(new Coordinate(center.x(), 150 + 35 + 100), 600, 115);
-        Rectangle rectangle1 = new Rectangle(new Coordinate(center.x() - 300, 150 + 35 + 100 + 50), 20, 20);
-        Rectangle rectangle2 = new Rectangle(new Coordinate(center.x(), center.y() + 65), 210, 90);
-        Rectangle rectangle3 = new Rectangle(new Coordinate(center.x(), center.y() + 75), 100, 50);
+        Rectangle rectangle = new Rectangle.Builder()
+                .setCenter(center.x(), 150 + 35 + 100)
+                .setWidth(600)
+                .setHeight(115)
+                .setColor(Color.RED)
+                .setFill(true)
+                .build();
+
+        Rectangle rectangle1 = new Rectangle.Builder()
+                .setCenter(center.x() - 300, 150 + 35 + 100 + 50)
+                .setWidth(20)
+                .setHeight(20)
+                .setColor(Color.GRAY)
+                .setFill(true)
+                .build();
+
+        Rectangle rectangle2 = new Rectangle.Builder()
+                .setCenter(center.x(), center.y() + 65)
+                .setWidth(210)
+                .setHeight(90)
+                .setColor(new Color(0.5, 0, 0, 1))
+                .setFill(true)
+                .build();
+
+        Rectangle rectangle3 = new Rectangle.Builder()
+                .setCenter(center.x(), center.y() + 75)
+                .setWidth(100)
+                .setHeight(50)
+                .setColor(Color.GRAY)
+                .setFill(true)
+                .build();
+
 
         Triangle triangle = new Triangle(new Coordinate(center.x() - 100, center.y() + 65), 140, 90, 0);
         Triangle triangle1 = new Triangle(new Coordinate(center.x() + 100, center.y() + 65), 140, 90, 0);
@@ -63,16 +91,16 @@ public class FirstQuizRenderer implements GLEventListener {
         gl.glNewList(staticList, GL2.GL_COMPILE);
         triangle.draw(gl, true, new Color(0.5, 0, 0, 1));
         triangle1.draw(gl, true, new Color(0.5, 0, 0, 1));
-        rectangle2.draw(gl, true, new Color(0.5, 0, 0, 1));
-        rectangle.draw(gl, true, Color.RED);
-        rectangle1.draw(gl, true, Color.GRAY);
+        rectangle2.draw(gl);
+        rectangle.draw(gl);
+        rectangle1.draw(gl);
 
         circle.draw(gl);
         circle1.draw(gl);
 
         circle2.draw(gl);
 
-        rectangle3.draw(gl, true, Color.GRAY);
+        rectangle3.draw(gl);
         triangle2.draw(gl, true, Color.GRAY);
         gl.glEndList();
     }

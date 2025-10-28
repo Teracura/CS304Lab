@@ -34,8 +34,9 @@ public class Human {
     }
 
     private void drawBody(GL2 gl, double bodyHeight) {
-        Rectangle body = new Rectangle(center, width * 0.3, bodyHeight);
-        body.draw(gl, true, bodyColor);
+        Rectangle body = new Rectangle.Builder().setCenter(center).setWidth(width * 0.3).setHeight(bodyHeight)
+                        .setFill(true).setColor(bodyColor).build();
+        body.draw(gl);
     }
 
     private void drawHead(GL2 gl, double headRadius, double bodyHeight, double limbThickness) {
@@ -51,30 +52,32 @@ public class Human {
         double armY = center.y() + bodyHeight / 4;
         double armOffsetX = width / 2;
 
-        Rectangle rightArm = new Rectangle(new Coordinate(center.x() + armOffsetX, armY), limbLength, limbThickness);
-        Rectangle leftArm = new Rectangle(new Coordinate(center.x() - armOffsetX, armY), limbLength, limbThickness);
+        Rectangle rightArm = new Rectangle.Builder().setCenter(center.x() + armOffsetX, armY)
+                .setWidth(limbLength).setHeight(limbThickness).setFill(true).setColor(bodyColor).build();
+        Rectangle leftArm = rightArm.copy();
 
+        leftArm.setCenter(center.x() - armOffsetX, armY);
         rightArm.setRotation(-30);
         leftArm.setRotation(30);
 
-        rightArm.draw(gl, true, bodyColor);
-        leftArm.draw(gl, true, bodyColor);
+        rightArm.draw(gl);
+        leftArm.draw(gl);
     }
 
     private void drawLegs(GL2 gl, double bodyHeight, double limbLength, double limbThickness) {
         double legStartY = center.y() - bodyHeight / 2;
         double legOffsetX = width * 0.1;
 
-        Rectangle rightLeg = new Rectangle(new Coordinate(center.x() + legOffsetX, legStartY - limbLength / 2),
-                limbThickness, limbLength);
-        Rectangle leftLeg = new Rectangle(new Coordinate(center.x() - legOffsetX, legStartY - limbLength / 2),
-                limbThickness, limbLength);
+        Rectangle rightLeg = new Rectangle.Builder().setCenter(center.x() + legOffsetX, legStartY - limbLength / 2)
+                .setWidth(limbThickness).setHeight(limbLength).setColor(bodyColor).setFill(true).build();
+        Rectangle leftLeg = rightLeg.copy();
+        leftLeg.setCenter(center.x() - legOffsetX, legStartY - limbLength / 2);
 
         rightLeg.setRotation(15);
         leftLeg.setRotation(-15);
 
-        rightLeg.draw(gl, true, bodyColor);
-        leftLeg.draw(gl, true, bodyColor);
+        rightLeg.draw(gl);
+        leftLeg.draw(gl);
     }
 
     public static class Builder {

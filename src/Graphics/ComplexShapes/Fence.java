@@ -37,15 +37,17 @@ public class Fence {
 
         for (int c = 0; c < numberOfColumns; c++) {
             double x = start.x() + c * columnSpacing;
-            Rectangle post = new Rectangle(new Coordinate(x, start.y() + height / 2), postWidth, height);
-            post.draw(gl, true, color);
+            Rectangle post = new Rectangle.Builder().setCenter(x, start.y() + height / 2)
+                    .setWidth(postWidth).setHeight(height).setFill(true).setColor(color).build();
+            post.draw(gl);
         }
 
         for (int r = 0; r < numberOfRows + 1; r++) {
             if (r == 0) continue;
             double y = start.y() + r * rowSpacing;
-            Rectangle plank = new Rectangle(new Coordinate(start.x() + width / 2, y), width, plankHeight);
-            plank.draw(gl, true, color);
+            Rectangle plank = new Rectangle.Builder().setCenter(start.x() + width / 2, y)
+                    .setWidth(width).setHeight(plankHeight).setFill(true).setColor(color).build();
+            plank.draw(gl);
         }
     }
 }

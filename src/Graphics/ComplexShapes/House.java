@@ -39,9 +39,16 @@ public class House {
         double x = center.x();
         double y = center.y();
 
+        // ===== WALL =====
         Coordinate wallCenter = new Coordinate(x, y - roofHeight / 2);
-        Rectangle wall = new Rectangle(wallCenter, width, wallHeight);
-        wall.draw(gl, fill, wallColor);
+        Rectangle wall = new Rectangle.Builder()
+                .setCenter(wallCenter)
+                .setWidth(width)
+                .setHeight(wallHeight)
+                .setColor(wallColor)
+                .setFill(fill)
+                .build();
+        wall.draw(gl);
 
         Coordinate roofCenter = new Coordinate(x, y + wallHeight / 2);
         Triangle roof = new Triangle(roofCenter, width, roofHeight);
@@ -49,18 +56,35 @@ public class House {
 
         double doorHeight = wallHeight * 0.7;
         Coordinate doorCenter = new Coordinate(x - width / 5, wallCenter.y() - wallHeight / 2 + doorHeight / 2);
-        Rectangle door = new Rectangle(doorCenter, doorWidth, doorHeight);
-        Circle doorHandle = new Circle.Builder().setFill(true).setCenter(doorCenter.x() + doorWidth / 5, doorCenter.y())
-                .setRadius(doorWidth / 10).setColor(Color.YELLOW).build();
-        door.draw(gl, fill, doorColor);
+        Rectangle door = new Rectangle.Builder()
+                .setCenter(doorCenter)
+                .setWidth(doorWidth)
+                .setHeight(doorHeight)
+                .setColor(doorColor)
+                .setFill(fill)
+                .build();
+        door.draw(gl);
+
+        Circle doorHandle = new Circle.Builder()
+                .setCenter(doorCenter.x() + doorWidth / 5, doorCenter.y())
+                .setRadius(doorWidth / 10)
+                .setColor(Color.YELLOW)
+                .setFill(true)
+                .build();
         doorHandle.draw(gl);
 
         double windowSize = wallHeight * 0.35;
         double windowOffsetX = width / 4;
         double windowCenterY = wallCenter.y() + wallHeight * 0.15;
         Coordinate windowCenter = new Coordinate(x + windowOffsetX, windowCenterY);
-        Rectangle window = new Rectangle(windowCenter, windowSize, windowSize);
-        window.draw(gl, fill, windowColor);
+        Rectangle window = new Rectangle.Builder()
+                .setCenter(windowCenter)
+                .setWidth(windowSize)
+                .setHeight(windowSize)
+                .setColor(windowColor)
+                .setFill(fill)
+                .build();
+        window.draw(gl);
 
         Color.BLACK.useColorGl(gl);
         gl.glLineWidth(2);
