@@ -15,6 +15,9 @@ public record Coordinate(double x, double y) {
     public Coordinate add(Coordinate other) {
         return new Coordinate(x + other.x, y + other.y);
     }
+    public Coordinate multiply(Coordinate factor) {
+        return new Coordinate(x * factor.x(), y * factor.y());
+    }
 
     @Override
     public String toString() {

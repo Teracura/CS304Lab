@@ -1,4 +1,4 @@
-package EventListeners.GLEventListeners;
+package SceneRenderers.StandardRenderers;
 
 import Graphics.*;
 import Graphics.BasicShapes.Circle;

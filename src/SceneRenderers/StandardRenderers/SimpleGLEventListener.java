@@ -1,4 +1,4 @@
-package EventListeners.GLEventListeners;
+package SceneRenderers.StandardRenderers;
 
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;

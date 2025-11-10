@@ -1,8 +1,8 @@
 package Scenes;
 
-import EventListeners.PageComponentAdapter;
-import EventListeners.GLEventListeners.SimpleGLEventListener;
-import Pages.PageManager;
+import Game.PageComponentAdapter;
+import SceneRenderers.StandardRenderers.SimpleGLEventListener;
+import Game.PageManager;
 import com.jogamp.opengl.awt.GLCanvas;
 
 import javax.swing.*;

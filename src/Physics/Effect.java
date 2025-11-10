@@ -1,4 +1,4 @@
-package EventListeners.GLEventListeners.Enums;
+package Physics;
 
 public enum Effect {
     DEFAULT,

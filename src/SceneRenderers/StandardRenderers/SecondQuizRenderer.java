@@ -1,7 +1,7 @@
-package EventListeners.GLEventListeners;
+package SceneRenderers.StandardRenderers;
 
-import EventListeners.GLEventListeners.Enums.Effect;
-import Graphics.BasicShapes.Circle;
+import Physics.Effect;
+import Graphics.BasicShapes.Rectangle;
 import Graphics.BasicShapes.Triangle;
 import Graphics.Color;
 import Graphics.Coordinate;
@@ -9,14 +9,17 @@ import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 
-public class SolarSystemRenderer implements GLEventListener {
-
+public class SecondQuizRenderer implements GLEventListener {
     GL2 gl;
     int staticList;
+    int dynamicList;
     Effect effect = Effect.DEFAULT;
-    float rotationAmount = 0;
+    float rotationAmount;
     float scaleFactor = 1;
     float rotationAngle = 0;
+    float deltaX = 0;
+    float deltaY = 0;
+    Triangle triangle;
 
     @Override
     public void init(GLAutoDrawable glAutoDrawable) {
@@ -28,47 +31,15 @@ public class SolarSystemRenderer implements GLEventListener {
         gl.glLoadIdentity();
         gl.glOrtho(-400, 400, -300, 300, -1, 1);
 
-        Circle circle = new Circle.Builder()
-                .setCenter(0, 0)
-                .setRadius(50)
-                .setColor(Color.YELLOW)
-                .setFill(true)
-                .build();
-
-        Circle circle1 = new Circle.Builder()
-                .setCenter(0, 0)
-                .setRadius(100)
-                .setColor(Color.WHITE)
-                .build();
-
-        Circle circle2 = new Circle.Builder()
-                .setCenter(0, 0)
-                .setRadius(150)
-                .setColor(Color.WHITE)
-                .build();
-
-        Circle planet = new Circle.Builder()
-                .setCenter(100, 0)
-                .setRadius(15)
-                .setColor(Color.RED)
-                .setFill(true)
-                .build();
-
-        Circle planet1 = new Circle.Builder()
-                .setCenter(150, 0)
-                .setRadius(10)
-                .setColor(Color.BLUE)
-                .setFill(true)
-                .build();
-
         staticList = gl.glGenLists(1);
-        gl.glNewList(staticList, GL2.GL_COMPILE);
 
-        circle.draw(gl);
-        circle1.draw(gl);
-        circle2.draw(gl);
-        planet.draw(gl);
-        planet1.draw(gl);
+        Rectangle rectangle = new Rectangle.Builder().setFill(true).setCenter(0,-300).setHeight(100).setWidth(1000).setColor(Color.GRAY).build();
+        triangle = new Triangle(new Coordinate(0,0), 100, 100, rotationAngle);
+
+
+        gl.glNewList(staticList, GL2.GL_COMPILE);
+        rectangle.draw(gl);
+
 
         gl.glEndList();
 
@@ -99,30 +70,35 @@ public class SolarSystemRenderer implements GLEventListener {
                 }
                 effect = Effect.DEFAULT;
                 break;
-            case ROTATE_CLOCKWISE:
-                rotationAngle += rotationAmount;
-                rotationAngle %= 360;
-                effect = Effect.DEFAULT;
-                break;
-            case ROTATE_COUNTERCLOCKWISE:
-                rotationAngle -= rotationAmount;
-                rotationAngle %= 360;
-                effect = Effect.DEFAULT;
-                break;
             case STEP_5:
-                rotationAmount += 5f;
+                rotationAngle += 5f;
                 effect = Effect.DEFAULT;
                 break;
             case STEP_5_NEGATIVE:
-                rotationAmount -= 5f;
+                rotationAngle -= 5f;
                 effect = Effect.DEFAULT;
                 break;
-
+            case FLY:
+                deltaY += (float) (10 * Math.cos(Math.toRadians(rotationAngle)));
+                deltaX += (float) (10 * -Math.sin(Math.toRadians(rotationAngle)));
+                effect = Effect.DEFAULT;
+                break;
+            case FLY_NEGATIVE:
+                deltaY -= (float) (10 * Math.cos(Math.toRadians(rotationAngle)));
+                deltaX -= (float) (10 * -Math.sin(Math.toRadians(rotationAngle)));
+                effect = Effect.DEFAULT;
+                break;
         }
-        gl.glRotatef(rotationAngle, 0, 0, 1);
-        gl.glScalef(scaleFactor, scaleFactor, scaleFactor);
 
+        gl.glScalef(scaleFactor, scaleFactor, scaleFactor);
         gl.glCallList(staticList);
+        triangle.setAngle(rotationAngle);
+        gl.glTranslatef(deltaX, deltaY - 200, 0);
+
+
+        triangle.draw(gl,true,Color.RED);
+
+
 
 
         gl.glPopMatrix();

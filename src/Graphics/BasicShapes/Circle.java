@@ -25,6 +25,7 @@ public class Circle implements Shape {
     }
 
     public Coordinate getCenter() { return center; }
+    public Coordinate setCenter(Coordinate center) { return this.center = center; }
     public double getRadius() { return radius; }
     public Color getColor() { return color; }
 

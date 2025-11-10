@@ -1,6 +1,6 @@
-package EventListeners.GLEventListeners;
+package SceneRenderers.StandardRenderers;
 
-import EventListeners.GLEventListeners.Enums.Effect;
+import Physics.Effect;
 import Graphics.BasicShapes.Triangle;
 import Graphics.Color;
 import Graphics.ComplexShapes.Cloud;

@@ -1,8 +1,7 @@
 package Scenes;
 
-import SceneRenderers.StandardRenderers.PyramidsSceneRenderer;
+import SceneRenderers.PhysicalRenderers.GameRenderer;
 import Game.PageComponentAdapter;
-import Game.PageManager;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
 
@@ -10,21 +9,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class Pyramids implements Page {
+public class GameTesting implements Page {
     JFrame frame;
     GLCanvas canvas;
-    PyramidsSceneRenderer renderer;
+    GameRenderer renderer;
 
     @Override
     public void init() {
-        frame = new JFrame("Pyramids");
+        frame = new JFrame("Second Quiz");
         setupFrame();
         addComponents();
         addListeners();
         renderPage();
         setupAnimator();
 
-        PageManager.registerFrameCloseHandler(this, frame);
+        Game.PageManager.registerFrameCloseHandler(this, frame);
     }
 
     @Override
@@ -43,8 +42,11 @@ public class Pyramids implements Page {
     @Override
     public void addComponents() {
         canvas = new GLCanvas();
-        renderer = new PyramidsSceneRenderer();
+        renderer = new GameRenderer();
         canvas.addGLEventListener(renderer);
+        canvas.addKeyListener(renderer.inputHandler);
+        canvas.addMouseListener(renderer.inputHandler);
+        canvas.addMouseMotionListener(renderer.inputHandler);
 
         frame.add(canvas, BorderLayout.CENTER);
     }
@@ -56,6 +58,7 @@ public class Pyramids implements Page {
 
     @Override
     public void handleEvents(ActionEvent e) {
+        var command = e.getActionCommand();
 
     }
 

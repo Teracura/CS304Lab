@@ -1,4 +1,4 @@
-package EventListeners;
+package Game;
 
 import Scenes.Page;
 

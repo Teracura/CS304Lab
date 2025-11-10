@@ -1,8 +1,8 @@
 package Scenes;
 
-import EventListeners.GLEventListeners.Enums.Effect;
-import EventListeners.GLEventListeners.SecondQuizRenderer;
-import EventListeners.PageComponentAdapter;
+import Physics.Effect;
+import SceneRenderers.StandardRenderers.SecondQuizRenderer;
+import Game.PageComponentAdapter;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
 
@@ -35,7 +35,7 @@ public class SecondQuiz implements Page {
         renderPage();
         setupAnimator();
 
-        Pages.PageManager.registerFrameCloseHandler(this, frame);
+        Game.PageManager.registerFrameCloseHandler(this, frame);
     }
 
     @Override

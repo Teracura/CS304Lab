@@ -1,8 +1,8 @@
 package Scenes;
 
-import EventListeners.GLEventListeners.TownDrawingRenderer;
-import EventListeners.PageComponentAdapter;
-import Pages.PageManager;
+import SceneRenderers.StandardRenderers.TownDrawingRenderer;
+import Game.PageComponentAdapter;
+import Game.PageManager;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;

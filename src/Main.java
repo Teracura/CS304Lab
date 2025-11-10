@@ -1,4 +1,4 @@
-import Pages.PageManager;
+import Game.PageManager;
 import Scenes.*;
 
 public class Main {
@@ -10,8 +10,9 @@ public class Main {
         var solarSystem = new SolarSystem();
         var pyramids = new Pyramids();
         var secondQuiz = new SecondQuiz();
+        var gameTesting = new GameTesting();
         PageManager.init();
-        PageManager.showPage(secondQuiz);
+        PageManager.showPage(gameTesting);
 //        Pages.PageManager.showPage(pyramids);
 //        Pages.PageManager.showPage(mainDrawing);
 //        Pages.PageManager.showPage(solarSystem);

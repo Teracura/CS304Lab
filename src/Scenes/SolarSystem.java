@@ -1,8 +1,8 @@
 package Scenes;
 
-import EventListeners.GLEventListeners.Enums.Effect;
-import EventListeners.GLEventListeners.SolarSystemRenderer;
-import EventListeners.PageComponentAdapter;
+import Physics.Effect;
+import SceneRenderers.StandardRenderers.SolarSystemRenderer;
+import Game.PageComponentAdapter;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
 
@@ -33,7 +33,7 @@ public class SolarSystem implements Page {
         renderPage();
         setupAnimator();
 
-        Pages.PageManager.registerFrameCloseHandler(this, frame);
+        Game.PageManager.registerFrameCloseHandler(this, frame);
     }
 
     @Override

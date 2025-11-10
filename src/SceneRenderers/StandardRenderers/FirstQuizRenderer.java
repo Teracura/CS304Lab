@@ -1,4 +1,4 @@
-package EventListeners.GLEventListeners;
+package SceneRenderers.StandardRenderers;
 
 import Graphics.BasicShapes.*;
 import Graphics.Color;
@@ -6,7 +6,6 @@ import Graphics.Coordinate;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
-import com.jogamp.opengl.util.packrect.Rect;
 
 public class FirstQuizRenderer implements GLEventListener {
     GL2 gl;

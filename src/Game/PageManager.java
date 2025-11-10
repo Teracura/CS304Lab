@@ -1,4 +1,4 @@
-package Pages;
+package Game;
 
 import Scenes.Page;
 
