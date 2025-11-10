@@ -1,4 +1,4 @@
-package Logic;
+package Pages;
 
 import Scenes.Page;
 
