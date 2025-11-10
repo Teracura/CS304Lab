@@ -1,9 +1,8 @@
 package Scenes;
 
-import EventListeners.GLEventListeners.FirstQuizRenderer;
 import EventListeners.GLEventListeners.TownDrawingRenderer;
 import EventListeners.PageComponentAdapter;
-import Logic.PageManager;
+import Pages.PageManager;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;

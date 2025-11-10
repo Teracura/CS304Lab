@@ -1,9 +1,8 @@
 package Scenes;
 
 import EventListeners.GLEventListeners.PyramidsSceneRenderer;
-import EventListeners.GLEventListeners.SolarSystemRenderer;
 import EventListeners.PageComponentAdapter;
-import Logic.PageManager;
+import Pages.PageManager;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
 
@@ -18,7 +17,7 @@ public class Pyramids implements Page {
 
     @Override
     public void init() {
-        frame = new JFrame("Solar System");
+        frame = new JFrame("Pyramids");
         setupFrame();
         addComponents();
         addListeners();

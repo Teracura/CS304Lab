@@ -2,8 +2,7 @@ package Scenes;
 
 import EventListeners.GLEventListeners.RotatingTrianglesRenderer;
 import EventListeners.PageComponentAdapter;
-import EventListeners.GLEventListeners.SimpleGLEventListener;
-import Logic.PageManager;
+import Pages.PageManager;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;

@@ -8,7 +8,7 @@ import Graphics.Coordinate;
 import Graphics.Shape;
 import com.jogamp.opengl.GL2;
 
-public class Tree implements Shape {
+public class Tree {
     Coordinate baseCenter;
     double height;
     double thickness;
@@ -29,12 +29,10 @@ public class Tree implements Shape {
         this.trunkColor = trunkColor;
     }
 
-    @Override
     public void move(double x, double y) {
         baseCenter = new Coordinate(baseCenter.x() + x, baseCenter.y() + y);
     }
 
-    @Override
     public void draw(GL2 gl) {
         double trunkHeight = height * 0.4;
         double leafHeight = useTrianglesForLeaves ? height * 0.9 : height * 0.6;
@@ -44,18 +42,15 @@ public class Tree implements Shape {
         drawLeaves(gl, leafBaseY, leafHeight);
     }
 
-    @Override
     public void rotate(double angle) {
         //rotation not supported yet
     }
 
-    @Override
     public void scale(double scaleFactor) {
         height *= scaleFactor;
         thickness *= scaleFactor;
     }
 
-    @Override
     public Tree copy() {
         return new Tree(baseCenter, height, thickness, leafColor, trunkColor, useTrianglesForLeaves, useTriangleTrunk);
     }

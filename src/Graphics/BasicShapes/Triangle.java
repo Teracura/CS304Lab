@@ -2,9 +2,12 @@ package Graphics.BasicShapes;
 
 import Graphics.Color;
 import Graphics.Coordinate;
+import Graphics.Shape;
+import Physics.Collision.Hitbox;
+import Physics.Collision.RectangleHitbox;
 import com.jogamp.opengl.GL2;
 
-public class Triangle {
+public class Triangle implements Shape {
     Coordinate center;
     double height;
     double bottomWidth;
@@ -29,14 +32,16 @@ public class Triangle {
         return new Triangle(center.copy(), bottomWidth, height, rotation);
     }
 
+    @Override
     public void move(double x, double y){
         move(new Coordinate(x, y));
     }
 
     public void move(Coordinate delta){
-        center = new Coordinate(center.x() + delta.x(), center.y() + delta.y());
+        center = center.add(delta);
     }
 
+    @Override
     public void scale(double factor){
         bottomWidth *= factor;
         height *= factor;
@@ -93,8 +98,23 @@ public class Triangle {
         return new Coordinate(x, y);
     }
 
+    public void setAngle(double angle){
+        rotation = angle;
+    }
+
+    @Override
     public void draw(GL2 gl) {
         draw(gl, false);
+    }
+
+    @Override
+    public void rotate(double angle) {
+
+    }
+
+    @Override
+    public Hitbox getHitbox() {
+        return new RectangleHitbox(center, bottomWidth, height);
     }
 
     public void draw(GL2 gl, boolean fill) {

@@ -1,7 +1,7 @@
 package Scenes;
 
 import EventListeners.GLEventListeners.Enums.Effect;
-import EventListeners.GLEventListeners.SolarSystemRenderer;
+import EventListeners.GLEventListeners.SecondQuizRenderer;
 import EventListeners.PageComponentAdapter;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class SolarSystem implements Page {
+public class SecondQuiz implements Page {
     JFrame frame;
     JButton zoomInButton;
     JButton zoomOutButton;
@@ -18,15 +18,17 @@ public class SolarSystem implements Page {
     JButton rotateCounterClockwiseButton;
     JButton step5;
     JButton stepMinus5;
+    JButton fly;
+    JButton land;
     JTextField angle;
     JPanel bottonItems;
     JPanel topItems;
     GLCanvas canvas;
-    SolarSystemRenderer renderer;
+    SecondQuizRenderer renderer;
 
     @Override
     public void init() {
-        frame = new JFrame("Solar System");
+        frame = new JFrame("Second Quiz");
         setupFrame();
         addComponents();
         addListeners();
@@ -66,15 +68,18 @@ public class SolarSystem implements Page {
         angle = new JTextField(5);
         step5 = new JButton("Step 5");
         stepMinus5 = new JButton("Step -5");
+        fly = new  JButton("Fly");
+        land = new  JButton("Land");
         bottonItems.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         bottonItems.add(step5);
         bottonItems.add(stepMinus5);
-        bottonItems.add(angle);
+        bottonItems.add(land);
+        bottonItems.add(fly);
 
         frame.add(bottonItems, BorderLayout.SOUTH);
 
         canvas = new GLCanvas();
-        renderer = new SolarSystemRenderer();
+        renderer = new SecondQuizRenderer();
         canvas.addGLEventListener(renderer);
 
         frame.add(canvas, BorderLayout.CENTER);
@@ -82,6 +87,8 @@ public class SolarSystem implements Page {
 
     @Override
     public void addListeners() {
+        frame.addComponentListener(new PageComponentAdapter(this));
+
         frame.addComponentListener(new PageComponentAdapter(this));
 
         zoomInButton.setActionCommand("zoom-in");
@@ -92,6 +99,10 @@ public class SolarSystem implements Page {
         rotateClockwiseButton.addActionListener(this::handleEvents);
         rotateCounterClockwiseButton.setActionCommand("rotate-counter-clockwise");
         rotateCounterClockwiseButton.addActionListener(this::handleEvents);
+        fly.setActionCommand("fly");
+        fly.addActionListener(this::handleEvents);
+        land.setActionCommand("land");
+        land.addActionListener(this::handleEvents);
         step5.setActionCommand("step-5");
         step5.addActionListener(this::handleEvents);
         stepMinus5.setActionCommand("step-minus-5");
@@ -126,6 +137,12 @@ public class SolarSystem implements Page {
                     break;
                 case "step-minus-5":
                     renderer.setEffect(Effect.STEP_5_NEGATIVE);
+                    break;
+                case "fly":
+                    renderer.setEffect(Effect.FLY);
+                    break;
+                case "land":
+                    renderer.setEffect(Effect.FLY_NEGATIVE);
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown command: " + command);

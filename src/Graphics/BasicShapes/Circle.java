@@ -3,6 +3,8 @@ package Graphics.BasicShapes;
 import Graphics.Color;
 import Graphics.Coordinate;
 import Graphics.Shape;
+import Physics.Collision.CircleHitbox;
+import Physics.Collision.Hitbox;
 import com.jogamp.opengl.GL2;
 
 public class Circle implements Shape {
@@ -44,6 +46,11 @@ public class Circle implements Shape {
     @Override
     public Circle copy() {
         return new Circle(center, radius, color, fill, iterations, startAngle);
+    }
+
+    @Override
+    public Hitbox getHitbox() {
+        return new CircleHitbox(center, radius);
     }
 
     @Override

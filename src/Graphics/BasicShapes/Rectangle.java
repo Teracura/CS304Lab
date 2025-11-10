@@ -3,6 +3,8 @@ package Graphics.BasicShapes;
 import Graphics.Color;
 import Graphics.Coordinate;
 import Graphics.Shape;
+import Physics.Collision.Hitbox;
+import Physics.Collision.RectangleHitbox;
 import com.jogamp.opengl.GL2;
 
 public class Rectangle implements Shape {
@@ -132,6 +134,11 @@ public class Rectangle implements Shape {
     @Override
     public Rectangle copy() {
         return new Rectangle(center, width, height, rotation, color, fill);
+    }
+
+    @Override
+    public Hitbox getHitbox() {
+        return new RectangleHitbox(center, width, height);
     }
 
     public static class Builder {

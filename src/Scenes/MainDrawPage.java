@@ -2,7 +2,7 @@ package Scenes;
 
 import EventListeners.PageComponentAdapter;
 import EventListeners.GLEventListeners.SimpleGLEventListener;
-import Logic.PageManager;
+import Pages.PageManager;
 import com.jogamp.opengl.awt.GLCanvas;
 
 import javax.swing.*;

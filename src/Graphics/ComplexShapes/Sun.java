@@ -5,20 +5,7 @@ import Graphics.Color;
 import Graphics.Coordinate;
 import com.jogamp.opengl.GL2;
 
-public class Sun {
-    private final Coordinate center;
-    private final double radius;
-    private final double rayLength;
-    private final int rayCount;
-    private final Color color;
-
-    private Sun(Coordinate center, double radius, double rayLength, int rayCount, Color color) {
-        this.center = center;
-        this.radius = radius;
-        this.rayLength = rayLength;
-        this.rayCount = rayCount;
-        this.color = color;
-    }
+public record Sun(Coordinate center, double radius, double rayLength, int rayCount, Color color) {
 
     public void draw(GL2 gl) {
         new Circle.Builder().setCenter(center).setRadius(radius).setColor(color).setFill(true).build().draw(gl);
