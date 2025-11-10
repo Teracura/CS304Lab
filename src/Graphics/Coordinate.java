@@ -19,6 +19,10 @@ public record Coordinate(double x, double y) {
         return new Coordinate(x * factor.x(), y * factor.y());
     }
 
+    public Coordinate multiply(double factor) {
+        return new Coordinate(x * factor, y * factor);
+    }
+
     @Override
     public String toString() {
         return "(%.2f, %.2f)".formatted(x, y);

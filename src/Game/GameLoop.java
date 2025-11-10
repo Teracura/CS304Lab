@@ -4,7 +4,7 @@ import com.jogamp.opengl.GL2;
 
 public interface GameLoop {
 
-    double PHYSICS_STEP = 1.0 / 120.0; // 60 Hz
+    double PHYSICS_STEP = 1.0 / 500.0; // 60 Hz
     long NANO_TO_SEC = 1_000_000_000L;
 
     void physicsUpdate();

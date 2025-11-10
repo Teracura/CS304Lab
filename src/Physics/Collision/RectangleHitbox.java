@@ -17,7 +17,6 @@ public record RectangleHitbox(Coordinate center, double width, double height) im
                     Math.abs(center.y() - center1.y()) <= (height + height1) / 2;
         }
         if (other instanceof CircleHitbox(Coordinate center1, double radius)) {
-            // Simple circle-rect collision (unrotated)
             double dx = Math.abs(center1.x() - center.x());
             double dy = Math.abs(center1.y() - center.y());
 

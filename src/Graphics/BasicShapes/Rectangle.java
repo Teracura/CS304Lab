@@ -100,6 +100,10 @@ public class Rectangle implements Shape {
         center = center.add(new Coordinate(x, y));
     }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     @Override
     public void draw(GL2 gl) {
         var points = getVertices();

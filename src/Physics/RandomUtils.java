@@ -10,6 +10,10 @@ public class RandomUtils {
         return new Coordinate(xStart + Math.random() * (xEnd - xStart), yStart + Math.random() * (yEnd - yStart));
     }
 
+    public static Coordinate randomDirection(){
+        return new Coordinate(Math.random() * 2 - 1, Math.random() * 2 - 1);
+    }
+
     public static double randomDouble(double min, double max){
         return min + Math.random() * (max - min);
     }
