@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class GameTesting implements Page {
+public class ThirdQuiz implements Page {
     JFrame frame;
     GLCanvas canvas;
     ThirdQuizRenderer renderer;

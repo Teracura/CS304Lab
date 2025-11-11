@@ -9,7 +9,13 @@ public enum Input {
     Z(1 << 4),
     X(1 << 5),
     C(1 << 6),
-    MOUSE_LEFT(1 << 7);
+    MOUSE_LEFT(1 << 7),
+    A(1 << 8),
+    D(1 << 9),
+    PLUS(1 << 10),
+    MINUS(1 << 11),
+    EQUALS(1 << 12),
+    R(1 << 13);
 
     public final int bit;
 

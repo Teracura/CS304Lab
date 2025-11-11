@@ -11,8 +11,9 @@ public class Main {
         var pyramids = new Pyramids();
         var secondQuiz = new SecondQuiz();
         var gameTesting = new GameTesting();
+        var thirdQuiz = new ThirdQuiz();
         PageManager.init();
-        PageManager.showPage(gameTesting);
+        PageManager.showPage(thirdQuiz);
 //        Pages.PageManager.showPage(pyramids);
 //        Pages.PageManager.showPage(mainDrawing);
 //        Pages.PageManager.showPage(solarSystem);
